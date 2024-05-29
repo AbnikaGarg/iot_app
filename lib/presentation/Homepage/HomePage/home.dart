@@ -244,7 +244,7 @@ Widget widgetTitle(
               children: [
                 Text(
                   title.tr,
-                  style: CustomTextStyles.homeTitleLargeDMSans,
+                  style: CustomTextStyles.homeTitleLargeOrangeDMSans,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -272,10 +272,28 @@ Widget widgetTitle(
         SizedBox(
           height: screenHeight * 2,
         ),
-        // FaIcon(
-        //   FontAwesomeIcons.ellipsis,
-        //   size: screenHeight * 2.5,
-        //   color: Theme.of(context).colorScheme.onInverseSurface,
+        // PopupMenuButton(
+        //   offset: Offset(0, 20), // SET THE (X,Y) POSITION
+        //   iconSize: 20,
+        //   child: Row(
+        //     children: [
+        //       Icon(Icons.more_horiz),
+        //     ],
+        //   ),
+
+        //   itemBuilder: (context) {
+        //     return [
+        //       PopupMenuItem(
+        //         child: Text('Edit'),
+        //         value: 1,
+        //       ),
+        //       PopupMenuItem(
+        //         child: Text('Delete'),
+        //         value: 2,
+        //       )
+        //     ];
+        //   },
+        //   onSelected: (value) {},
         // ),
       ],
     ),
@@ -354,8 +372,8 @@ class HomeCompo extends StatelessWidget {
   //const HomeCompo({super.key});
   List<CustomDeviceCard> devices = [
     CustomDeviceCard(
-      deviceName: "Lamp",
-      roomName: "Living Room",
+      deviceName: "AC",
+      roomName: "Air Conitioner",
       switchStatus: true,
     ),
     CustomDeviceCard(

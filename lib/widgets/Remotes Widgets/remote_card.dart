@@ -23,7 +23,7 @@ class RemoteCard extends StatelessWidget {
     return  GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: screenHeight * 28,
+        height: 80,
         width: screenWidth * 44,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondaryContainer,
@@ -36,14 +36,14 @@ class RemoteCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(
-              height: screenHeight * 1,
-            ),
-            CircleAvatar(
-              radius: 50,
-              ///Change it to image if need
-              child: Center(child: Icon(Icons.adb_outlined,color: Colors.white,size: 40,),),
-            ),
+            // SizedBox(
+            //   height: screenHeight * 1,
+            // ),
+            // CircleAvatar(
+            //   radius: 50,
+            //   ///Change it to image if need
+            //   child: Center(child: Icon(Icons.adb_outlined,color: Colors.white,size: 40,),),
+            // ),
             SizedBox(
               height: screenHeight * 1,
             ),

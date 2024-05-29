@@ -62,15 +62,15 @@ class AddNewRemote extends StatelessWidget {
           //   height: screenHeight * 3,
           // ),
           ///List View of all remotes
-          GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            //mainAxisSpacing: screenHeight * 0.5,
-            padding: EdgeInsets.only(left: screenWidth * 2,right: screenWidth * 2),
-            children: List.generate(8, (index) {
-              return Center(child: devices[index]);
-            }),
-          ),
+          // GridView.count(
+          //   shrinkWrap: true,
+          //   crossAxisCount: 3,
+          //   //mainAxisSpacing: screenHeight * 0.5,
+          //   padding: EdgeInsets.only(left: screenWidth * 2,right: screenWidth * 2),
+          //   children: List.generate(8, (index) {
+          //     return Center(child: devices[index]);
+          //   }),
+          // ),
         ],
       ),
     );

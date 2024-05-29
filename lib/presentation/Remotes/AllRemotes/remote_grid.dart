@@ -15,7 +15,7 @@ class RemoteGrid extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1,
+        childAspectRatio: 2,
       ///  padding: EdgeInsets.only(left: 12,right: 12),
         children: List.generate(devices.length, (index) {
           return Center(child: devices[index]);

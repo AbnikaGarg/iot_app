@@ -30,6 +30,13 @@ class CustomTextStyles {
       theme.textTheme.titleSmall!.copyWith(
         fontSize: 15.fSize,
         fontWeight: FontWeight.w600,
+       
+      );
+      static get homeTitleLargeOrangeDMSans =>
+      theme.textTheme.titleSmall!.copyWith(
+        fontSize: 15.fSize,
+        fontWeight: FontWeight.w600,
+        color: appTheme.orangeNormal,
       );
   static get homeTitleLarge2DMSans =>
       theme.textTheme.titleSmall!.copyWith(

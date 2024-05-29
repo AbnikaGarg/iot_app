@@ -1,8 +1,36 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iot_application1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
-class CreateNewScene extends StatelessWidget {
+class CreateNewScene extends StatefulWidget {
+  @override
+  State<CreateNewScene> createState() => _CreateNewSceneState();
+}
+
+class _CreateNewSceneState extends State<CreateNewScene> {
+  List devices = [
+    {
+      "type": "heading",
+      "label": "Living Room",
+      "children": [
+        {"type": "item", "label": "AC"},
+        {"type": "item", "label": "Light"},
+        {"type": "item", "label": "Fan"}
+      ]
+    },
+    {
+      "type": "heading",
+      "label": "Bedroom",
+      "children": [
+        {"type": "item", "label": "Curtains"},
+        {"type": "item", "label": "Tube Light"},
+        {"type": "item", "label": "Led"}
+      ]
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     AutoHeight au = AutoHeight(context);
@@ -45,14 +73,66 @@ class CreateNewScene extends StatelessWidget {
           SizedBox(
             height: screenHeight * 2,
           ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              gradient: LinearGradient(colors: [
+                Color.fromRGBO(255, 255, 255, 0.1),
+                Color.fromRGBO(255, 255, 255, 0.2),
+                Color.fromRGBO(255, 255, 255, 0.1),
+                Color.fromRGBO(255, 255, 255, 0.04),
+              ]),
+            ),
+            child: TextField(
+              style: GoogleFonts.plusJakartaSans(color: Colors.white),
+              readOnly: true,
+              onTap: () {
+                 _showMultiSelectBottomSheet(context);
+              },
+              decoration: InputDecoration(
+                hintText: 'Select devices',
+                
+                hintStyle: GoogleFonts.plusJakartaSans(
+                    color: Colors.white.withOpacity(0.5),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Color.fromRGBO(255, 255, 255, 0.3), width: 1),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Color.fromRGBO(255, 255, 255, 0.3), width: 1),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                isDense: true,
+                suffixIcon: Icon(Icons.arrow_drop_down)
+                // prefixIcon: SvgPicture.asset(
+                //   "assets/icons/user.svg",
+                //   height: 10,
+                //   fit: BoxFit.scaleDown,
+                // ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: screenHeight * 2,
+          ),
           Padding(
             padding:
                 EdgeInsets.only(left: screenWidth * 3, right: screenWidth * 3),
-            child: Text(
-              "Schedule".tr,
-              style: CustomTextStyles.homeTitleLargeDMSans,
-              overflow: TextOverflow.fade,
-              maxLines: 1,
+            child: GestureDetector(
+              onTap: () {
+               
+              },
+              child: Text(
+                "Schedule".tr,
+                style: CustomTextStyles.homeTitleLargeDMSans,
+                overflow: TextOverflow.fade,
+                maxLines: 1,
+              ),
             ),
           ),
           Padding(
@@ -323,6 +403,86 @@ class CreateNewScene extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _showMultiSelectBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          decoration: BoxDecoration(
+              color: appTheme.blueGray900,
+              borderRadius: BorderRadius.circular(22)),
+          padding: EdgeInsets.all(20),
+          child: StatefulBuilder(builder: (BuildContext context,
+              StateSetter setState /*You can rename this!*/) {
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Select Devies',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 20),
+                  _buildMultiSelectList(setState),
+                  SizedBox(height: 20),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  //   child: Text('Confirm'),
+                  // ),
+                ],
+              ),
+            );
+          }),
+        );
+      },
+    );
+  }
+
+  List<String> _selectedItems = [];
+
+  Widget _buildMultiSelectList(setState) {
+    List<Widget> widgets = [];
+    for (var section in devices) {
+      if (section['type'] == 'heading') {
+        widgets.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Text(
+              section['label'],
+              style: CustomTextStyles.homeTitleLargeDMSans,
+            ),
+          ),
+        );
+        for (var child in section['children']) {
+          widgets.add(
+            CheckboxListTile(
+              title: Text(
+                child['label'],
+                style: CustomTextStyles.homeTitleSmallDMSans,
+              ),
+              value: _selectedItems.contains(child['label']),
+              onChanged: (bool? value) {
+                setState(() {
+                  if (value != null && value) {
+                    _selectedItems.add(child['label']);
+                  } else {
+                    _selectedItems.remove(child['label']);
+                  }
+                });
+              },
+            ),
+          );
+        }
+      }
+    }
+    return Column(
+      children: widgets,
     );
   }
 }

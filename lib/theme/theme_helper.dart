@@ -208,6 +208,7 @@ ThemeData get theme => ThemeHelper().themeData();
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   appBarTheme: AppBarTheme(backgroundColor: appTheme.gray800),
+  popupMenuTheme: PopupMenuThemeData(color: appTheme.gray800),
     primaryColor: appTheme.orangeNormal,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

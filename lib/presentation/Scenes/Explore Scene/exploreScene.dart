@@ -40,6 +40,10 @@ class ExploreScenes extends StatelessWidget {
             //     onTap: () {
             //       Navigator.pop(context);
             //     },
+            //edit, delete device scene,schduele
+            // title orange
+            //ac speaker
+            //create scene dropdown 
             //   ),
             // ),
             centerTitle: false,
